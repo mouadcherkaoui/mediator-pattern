@@ -10,7 +10,7 @@ namespace MediatorPattern
     public class RegisterCustomerCommand : ICommand
     {
         [Required]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [MinLength(5)]
         public string CustomerInfos { get; set; }
     }

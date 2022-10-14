@@ -29,14 +29,7 @@ namespace MediatorPattern
                 var handlerType = typeof(ICommandHandler<>);
                 var genericHandlerType = handlerType.MakeGenericType(typeof(TCommand));
                 
-                ICommandHandler<TCommand> handler = null; // (ICommandHandler<TCommand>)(Activator.CreateInstance(handlerImplementation));
-                //using (var scope = _provider.CreateScope())
-                //{
-                    //handler = (ICommandHandler<TCommand>)GetCommandHandler(genericHandlerType);
-                    
-                    //handler = (ICommandHandler<TCommand>)scope.ServiceProvider.GetRequiredService(genericHandlerType);
-
-                handler = (ICommandHandler<TCommand>)GetCommandHandlerFromAttribute(command.GetType());
+                var handler = (ICommandHandler<TCommand>)GetCommandHandlerFromAttribute(command.GetType());
                 var validator = handler.GetType().GetCustomAttribute<HandleCommandOfTypeAttribute>().Validator;
                 if(validator != null)
                 {
@@ -45,7 +38,6 @@ namespace MediatorPattern
                     return validationResult;
                 }
                 return handler.Handle(command);
-                //}
             }
             catch (Exception ex)
             {
@@ -63,16 +55,22 @@ namespace MediatorPattern
 
         private object GetCommandHandler(Type handlerType)
         {
-            var getCommandHandlerMethod = typeof(SimpleMediator).GetMethod(nameof(getCommandHandlerType), BindingFlags.Instance | BindingFlags.NonPublic);
+            var getCommandHandlerMethod = typeof(SimpleMediator)
+                .GetMethod(nameof(getCommandHandlerType), BindingFlags.Instance | BindingFlags.NonPublic);
+
             var genericGetCommandHandlerMethod = getCommandHandlerMethod.MakeGenericMethod(handlerType);
+            
             var result = genericGetCommandHandlerMethod.Invoke(this, null);
+            
             return result;
         }
 
         private object GetCommandHandlerFromAttribute(Type commandType)
         {
-            var resolved = handlers.Values.FirstOrDefault(v => v.GetCustomAttribute<HandleCommandOfTypeAttribute>()?.CommandType == commandType);
-            // var handlerType = resolved.GetCustomAttribute<CommandHandlerAttribute>()?.HandlerType;
+            var resolved = 
+                handlers.Values
+                    .FirstOrDefault(v => v.GetCustomAttribute<HandleCommandOfTypeAttribute>()?.CommandType == commandType);
+
             return Activator.CreateInstance(resolved);
         }
     }
