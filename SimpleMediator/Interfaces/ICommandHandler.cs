@@ -11,9 +11,6 @@ namespace MediatorPattern
     {
         void HandleCommad(TCommand command);
     }
-    public interface IMessagingCommandHandler<TCommand> : ICommandHandler<TCommand> 
-    {
-    }    
 
     public class CommandHandler<TCommand> : ICommandHandler<TCommand>
     {
@@ -22,14 +19,4 @@ namespace MediatorPattern
 
         }
     }    
-    
-    public class MessagingCommandHandler<TCommand> : IMessagingCommandHandler<TCommand>
-    {
-        public void HandleCommad(TCommand command)
-        {
-            var message = new Message(command);
-            MessageQueue queue = new MessageQueue(@$".\private$\mediatr");
-            queue.Send(message);
-        }
-    }
 }
