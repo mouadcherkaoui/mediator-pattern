@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleMediator.CommandHandlers
+namespace MediatorPattern.CommandHandlers
 {
     public class MessagingCommandHandler<TCommand> : ICommandHandler<TCommand>
     {
-        public void HandleCommad(TCommand command)
+        public void Handle(TCommand command)
         {
             var queueName = @$".\private$\mediatr";
             var message = new Message(command);
@@ -25,6 +25,11 @@ namespace SimpleMediator.CommandHandlers
             MessageQueue queue = new MessageQueue(queueName);
 
             queue.Send(message);
+        }
+
+        CommandResult ICommandHandler<TCommand>.Handle(TCommand command)
+        {
+            throw new NotImplementedException();
         }
     }
 }

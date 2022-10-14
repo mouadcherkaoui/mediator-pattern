@@ -10,21 +10,31 @@ namespace MediatorPattern
     [HandleCommandOfType(typeof(RegisterCustomerCommand), Validator = typeof(RegisterCustomerCommandValidator))]
     public class RegisterCustomerCommandHandler : CommandHandler<RegisterCustomerCommand>
     {
-        public override void HandleCommad(RegisterCustomerCommand command)
+        public override CommandResult Handle(RegisterCustomerCommand command)
         {
-            var queueName = @$".\private$\mediatr";
-            var message = new Message(command);
-            message.Label = command.GetType().Name.ToLower();
+            var resultToReturn = new CommandResult();
 
-
-            if (!MessageQueue.Exists(queueName))
+            try
             {
-                MessageQueue.Create(queueName);
+                var queueName = @$".\private$\mediatr";
+                var message = new Message(command);
+                message.Label = command.GetType().Name.ToLower();
+
+                if (!MessageQueue.Exists(queueName))
+                {
+                    MessageQueue.Create(queueName);
+                }
+
+                MessageQueue queue = new MessageQueue(queueName);
+
+                queue.Send(message);
+                resultToReturn.State = State.Succes;
             }
-
-            MessageQueue queue = new MessageQueue(queueName);
-
-            queue.Send(message);
+            catch (Exception ex)            
+            {
+                resultToReturn.State = State.Failed;
+            }
+            return resultToReturn;
         }
     }
 }

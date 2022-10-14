@@ -22,7 +22,7 @@ namespace MediatorPattern
                 .ToDictionary(t => t.Name, t => t);
         }
 
-        public void SendCommand<TCommand>(TCommand command) where TCommand: ICommand        
+        public CommandResult Send<TCommand>(TCommand command) where TCommand: ICommand        
         {
             try
             {
@@ -40,14 +40,16 @@ namespace MediatorPattern
                 var validator = handler.GetType().GetCustomAttribute<HandleCommandOfTypeAttribute>().Validator;
                 if(validator != null)
                 {
-                    var validationResult = ((ICommandValidator<TCommand>)Activator.CreateInstance(validator)).Validate(command);
-                    if (validationResult.Count > 0) return;
+                    var validatorInstance = (ICommandValidator<TCommand>)Activator.CreateInstance(validator, handler);
+                    var validationResult = ((ICommandHandler<TCommand>)validatorInstance).Handle(command);
+                    return validationResult;
                 }
-                handler.HandleCommad(command);
+                return handler.Handle(command);
                 //}
             }
             catch (Exception ex)
             {
+                return new CommandResult() { State = State.Failed };
             }            
         }
 

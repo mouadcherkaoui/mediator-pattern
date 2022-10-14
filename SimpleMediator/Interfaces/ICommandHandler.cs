@@ -9,14 +9,18 @@ namespace MediatorPattern
 {
     public interface ICommandHandler<TCommand> 
     {
-        void HandleCommad(TCommand command);
+        // void Handle(TCommand command);
+        CommandResult Handle(TCommand command);
     }
 
-    public class CommandHandler<TCommand> : ICommandHandler<TCommand>
+    public interface ICommandHandler<TCommand, TResult>
     {
-        public virtual void HandleCommad(TCommand command)
-        {
+        // void Handle(TCommand command);
+        CommandResult Handle(TCommand command);
+    }
 
-        }
+    public abstract class CommandHandler<TCommand> : ICommandHandler<TCommand>
+    {
+        public abstract CommandResult Handle(TCommand command);
     }    
 }

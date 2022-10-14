@@ -36,9 +36,9 @@ namespace WebApplication1.Controllers
         [HttpPost()]
         public IActionResult Subscibe([FromBody] RegisterCustomerCommand customerCommand)
         {
-            _mediator.SendCommand(customerCommand);
+            var result = _mediator.Send(customerCommand);
 
-            return Ok();
+            return Ok(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

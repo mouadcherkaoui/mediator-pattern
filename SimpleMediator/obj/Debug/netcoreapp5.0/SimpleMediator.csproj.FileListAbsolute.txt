@@ -9,3 +9,4 @@ C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcorea
 C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.dll
 C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\ref\SimpleMediator.dll
 C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.pdb
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.csproj.AssemblyReference.cache
