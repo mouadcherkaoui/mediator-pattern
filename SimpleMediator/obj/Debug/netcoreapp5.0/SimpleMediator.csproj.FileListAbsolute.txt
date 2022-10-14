@@ -1,0 +1,11 @@
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\bin\Debug\netcoreapp5.0\SimpleMediator.deps.json
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\bin\Debug\netcoreapp5.0\SimpleMediator.dll
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\bin\Debug\netcoreapp5.0\ref\SimpleMediator.dll
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\bin\Debug\netcoreapp5.0\SimpleMediator.pdb
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.AssemblyInfoInputs.cache
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.AssemblyInfo.cs
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.csproj.CoreCompileInputs.cache
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.dll
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\ref\SimpleMediator.dll
+C:\Users\s0114103\source\repos\MediatorPattern\SimpleMediator\obj\Debug\netcoreapp5.0\SimpleMediator.pdb
